@@ -1,0 +1,167 @@
+import tkinter as tk
+from tkinter import ttk, messagebox
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import geopandas as gpd
+import contextily as ctx
+from shapely.geometry import Point
+
+class PropertyApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Property Search")
+
+        # Load data
+        self.data = pd.read_csv("your_property_data.csv")  # Replace with your CSV path
+        self.data.dropna(subset=['price', 'long', 'lat', 'zipcode'], inplace=True)
+
+        self.available_zip_min = int(self.data['zipcode'].min())
+        self.available_zip_max = int(self.data['zipcode'].max())
+        self.available_lat_min = round(self.data['lat'].min(), 2)
+        self.available_lat_max = round(self.data['lat'].max(), 2)
+        self.available_lon_min = round(self.data['long'].min(), 2)
+        self.available_lon_max = round(self.data['long'].max(), 2)
+
+        self.create_widgets()
+
+    def create_widgets(self):
+        # Top Label
+        info_text = (f"Available Zip Codes: {self.available_zip_min} - {self.available_zip_max} | "
+                     f"Latitude: {self.available_lat_min} to {self.available_lat_max} | "
+                     f"Longitude: {self.available_lon_min} to {self.available_lon_max}")
+        label_info = tk.Label(self.root, text=info_text, bg='lightblue', font=('Arial', 10))
+        label_info.pack(fill=tk.X)
+
+        # Search Frame
+        frame = tk.Frame(self.root)
+        frame.pack(pady=10)
+
+        self.search_mode = tk.StringVar(value='zipcode')
+        tk.Radiobutton(frame, text="Zip Code", variable=self.search_mode, value='zipcode').grid(row=0, column=0)
+        tk.Radiobutton(frame, text="Latitude/Longitude", variable=self.search_mode, value='latlon').grid(row=0, column=1)
+
+        self.entry = tk.Entry(frame)
+        self.entry.grid(row=0, column=2, padx=5)
+
+        search_btn = tk.Button(frame, text="Search", command=self.search)
+        search_btn.grid(row=0, column=3, padx=5)
+
+        # Results Tabs
+        self.tabs = ttk.Notebook(self.root)
+        self.tabs.pack(fill=tk.BOTH, expand=True)
+
+        self.summary_frame = tk.Frame(self.tabs)
+        self.chart_frame = tk.Frame(self.tabs)
+        self.property_frame = tk.Frame(self.tabs)
+
+        self.tabs.add(self.summary_frame, text="Summary")
+        self.tabs.add(self.chart_frame, text="Charts")
+        self.tabs.add(self.property_frame, text="Properties")
+
+    def search(self):
+        query = self.entry.get().strip()
+        if self.search_mode.get() == 'zipcode':
+            try:
+                zipcode = int(query)
+                result = self.data[self.data['zipcode'] == zipcode]
+                if result.empty:
+                    nearest_zip = self.find_nearest_zip(zipcode)
+                    messagebox.showinfo("Not Found", f"No properties found. Try nearest Zip: {nearest_zip}")
+                    self.entry.delete(0, tk.END)
+                    self.entry.insert(0, str(nearest_zip))
+                    return
+            except ValueError:
+                messagebox.showerror("Invalid Input", "Please enter a valid Zip Code.")
+                return
+        else:
+            try:
+                lat_str, lon_str = query.split(',')
+                lat, lon = float(lat_str), float(lon_str)
+                result = self.data[(abs(self.data['lat'] - lat) < 0.01) & (abs(self.data['long'] - lon) < 0.01)]
+                if result.empty:
+                    nearest_lat, nearest_lon = self.find_nearest_latlon(lat, lon)
+                    messagebox.showinfo("Not Found", f"No properties found. Try nearest Lat/Lon: {nearest_lat}, {nearest_lon}")
+                    self.entry.delete(0, tk.END)
+                    self.entry.insert(0, f"{nearest_lat}, {nearest_lon}")
+                    return
+            except ValueError:
+                messagebox.showerror("Invalid Input", "Please enter as: latitude,longitude")
+                return
+
+        self.update_summary(result)
+        self.update_charts(result)
+        self.update_properties(result)
+
+    def find_nearest_zip(self, zipcode):
+        return self.data['zipcode'].iloc[(self.data['zipcode'] - zipcode).abs().argsort()[:1]].values[0]
+
+    def find_nearest_latlon(self, lat, lon):
+        distances = ((self.data['lat'] - lat)**2 + (self.data['long'] - lon)**2)
+        nearest = self.data.iloc[distances.argsort()[:1]]
+        return round(nearest['lat'].values[0], 5), round(nearest['long'].values[0], 5)
+
+    def update_summary(self, data):
+        for widget in self.summary_frame.winfo_children():
+            widget.destroy()
+        summary = data.describe()
+        label = tk.Label(self.summary_frame, text=str(summary), font=('Courier', 10), justify=tk.LEFT)
+        label.pack()
+
+    def update_charts(self, data):
+        for widget in self.chart_frame.winfo_children():
+            widget.destroy()
+
+        if data.empty:
+            return
+
+        # Convert to GeoDataFrame
+        gdf = gpd.GeoDataFrame(
+            data,
+            geometry=gpd.points_from_xy(data['long'], data['lat']),
+            crs="EPSG:4326"  # original
+        )
+        gdf = gdf.to_crs(epsg=3857)  # project
+
+        fig, ax = plt.subplots(figsize=(8, 6))
+        gdf.plot(
+            ax=ax,
+            column='price',
+            cmap='plasma',
+            markersize=30,
+            legend=True,
+            alpha=0.8,
+            legend_kwds={'label': "Price ($)", 'orientation': "vertical"}
+        )
+        ctx.add_basemap(ax, crs=gdf.crs.to_string(), source=ctx.providers.OpenStreetMap.Mapnik)
+
+        ax.set_title("Properties on Map", fontsize=14)
+        ax.set_axis_off()
+        plt.tight_layout()
+
+        canvas = FigureCanvasTkAgg(fig, master=self.chart_frame)
+        canvas.draw()
+        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+    def update_properties(self, data):
+        for widget in self.property_frame.winfo_children():
+            widget.destroy()
+
+        if data.empty:
+            return
+
+        cols = ['price', 'lat', 'long', 'zipcode']
+        tree = ttk.Treeview(self.property_frame, columns=cols, show='headings')
+        for col in cols:
+            tree.heading(col, text=col)
+            tree.column(col, anchor=tk.CENTER)
+        
+        for _, row in data.iterrows():
+            tree.insert('', tk.END, values=[row[col] for col in cols])
+
+        tree.pack(fill=tk.BOTH, expand=True)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = PropertyApp(root)
+    root.mainloop()
