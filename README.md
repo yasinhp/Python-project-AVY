@@ -23,6 +23,7 @@ Square footage range
 Price range
 
 File Structure
+
 GeoProp-Analyzer/
 ├── data/
 │   └── filtered_real_estate_data.csv       # Sample real estate data
