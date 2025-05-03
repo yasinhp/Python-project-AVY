@@ -85,8 +85,7 @@ python main.py
 If the page doesn't load:
 1. Verify the server is running (you should see output in your terminal)
 2. Check your firewall settings
-3. Try accessing `http://127.0.0.1:8050/` instead
-4. Ensure no other application is using port 8050
+
 
 ## Notes
 - The application requires the model file (`xgboost_investment_model.pkl`) to be present in the gui folder
