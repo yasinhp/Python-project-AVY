@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7d075cf32ff0ff472ba56683b2c0170e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_7d075cf32ff0ff472ba56683b2c0170e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_7d075cf32ff0ff472ba56683b2c0170e = L.map(
+                "map_7d075cf32ff0ff472ba56683b2c0170e",
+                {
+                    center: [40.75, -73.98],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_cf77141d417664ddfb05d06294678521 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_cf77141d417664ddfb05d06294678521.addTo(map_7d075cf32ff0ff472ba56683b2c0170e);
+        
+    
+            var marker_f10492ddcbfb9547293ece43328db394 = L.marker(
+                [47.589, -122.177],
+                {
+}
+            ).addTo(map_7d075cf32ff0ff472ba56683b2c0170e);
+        
+    
+        var popup_edbd615573c57889cbec1244b1d03e94 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_81fd486a439f05d079a4b71e73c4e13f = $(`<div id="html_81fd486a439f05d079a4b71e73c4e13f" style="width: 100.0%; height: 100.0%;">         <b>Price:</b> $480000.0<br>         <b>Bedrooms:</b> 4<br>         <b>Bathrooms:</b> 2.0<br>         <b>Sqft:</b> 2180 sqft<br>         <b>Condition:</b> 2<br>         <b>Grade:</b> 6<br>         <b>Year Built:</b> 1950<br>         </div>`)[0];
+                popup_edbd615573c57889cbec1244b1d03e94.setContent(html_81fd486a439f05d079a4b71e73c4e13f);
+            
+        
+
+        marker_f10492ddcbfb9547293ece43328db394.bindPopup(popup_edbd615573c57889cbec1244b1d03e94)
+        ;
+
+        
+    
+    
+            marker_f10492ddcbfb9547293ece43328db394.bindTooltip(
+                `<div>
+                     Price: 480000.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c4e9585810ca652eeb5e2bca77cdd093 = L.marker(
+                [47.5919, -122.154],
+                {
+}
+            ).addTo(map_7d075cf32ff0ff472ba56683b2c0170e);
+        
+    
+        var popup_14426ec1a60ac5d40bba93f7aec31358 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bdbfa01a3804d2ee133317a701a533cc = $(`<div id="html_bdbfa01a3804d2ee133317a701a533cc" style="width: 100.0%; height: 100.0%;">         <b>Price:</b> $490000.0<br>         <b>Bedrooms:</b> 3<br>         <b>Bathrooms:</b> 1.75<br>         <b>Sqft:</b> 1660 sqft<br>         <b>Condition:</b> 4<br>         <b>Grade:</b> 8<br>         <b>Year Built:</b> 1965<br>         </div>`)[0];
+                popup_14426ec1a60ac5d40bba93f7aec31358.setContent(html_bdbfa01a3804d2ee133317a701a533cc);
+            
+        
+
+        marker_c4e9585810ca652eeb5e2bca77cdd093.bindPopup(popup_14426ec1a60ac5d40bba93f7aec31358)
+        ;
+
+        
+    
+    
+            marker_c4e9585810ca652eeb5e2bca77cdd093.bindTooltip(
+                `<div>
+                     Price: 490000.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_30b2412f51881bbd70ecd9a2e8f45551 = L.marker(
+                [47.5882, -122.155],
+                {
+}
+            ).addTo(map_7d075cf32ff0ff472ba56683b2c0170e);
+        
+    
+        var popup_6bf976db6e5d644bd9a9e96a3eb5fcc3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_90c4b914bf1ac49b2c195d99e4eb0784 = $(`<div id="html_90c4b914bf1ac49b2c195d99e4eb0784" style="width: 100.0%; height: 100.0%;">         <b>Price:</b> $411100.0<br>         <b>Bedrooms:</b> 3<br>         <b>Bathrooms:</b> 1.5<br>         <b>Sqft:</b> 1040 sqft<br>         <b>Condition:</b> 4<br>         <b>Grade:</b> 7<br>         <b>Year Built:</b> 1958<br>         </div>`)[0];
+                popup_6bf976db6e5d644bd9a9e96a3eb5fcc3.setContent(html_90c4b914bf1ac49b2c195d99e4eb0784);
+            
+        
+
+        marker_30b2412f51881bbd70ecd9a2e8f45551.bindPopup(popup_6bf976db6e5d644bd9a9e96a3eb5fcc3)
+        ;
+
+        
+    
+    
+            marker_30b2412f51881bbd70ecd9a2e8f45551.bindTooltip(
+                `<div>
+                     Price: 411100.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_14592995bf79c56c8a39c5cf20aa772c = L.marker(
+                [47.5897, -122.179],
+                {
+}
+            ).addTo(map_7d075cf32ff0ff472ba56683b2c0170e);
+        
+    
+        var popup_ec118ab698d56e1032719116db0b5880 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f2806a8c65ae6013cd255a48def4a75d = $(`<div id="html_f2806a8c65ae6013cd255a48def4a75d" style="width: 100.0%; height: 100.0%;">         <b>Price:</b> $449228.0<br>         <b>Bedrooms:</b> 5<br>         <b>Bathrooms:</b> 2.5<br>         <b>Sqft:</b> 3020 sqft<br>         <b>Condition:</b> 3<br>         <b>Grade:</b> 8<br>         <b>Year Built:</b> 1965<br>         </div>`)[0];
+                popup_ec118ab698d56e1032719116db0b5880.setContent(html_f2806a8c65ae6013cd255a48def4a75d);
+            
+        
+
+        marker_14592995bf79c56c8a39c5cf20aa772c.bindPopup(popup_ec118ab698d56e1032719116db0b5880)
+        ;
+
+        
+    
+    
+            marker_14592995bf79c56c8a39c5cf20aa772c.bindTooltip(
+                `<div>
+                     Price: 449228.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9058c9c9c420a3b38968b968c20be912 = L.marker(
+                [47.5931, -122.158],
+                {
+}
+            ).addTo(map_7d075cf32ff0ff472ba56683b2c0170e);
+        
+    
+        var popup_414001ec3a7011dbe56ab7dc54e3600e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_aad55ef9486cec563fcc975247aea7fd = $(`<div id="html_aad55ef9486cec563fcc975247aea7fd" style="width: 100.0%; height: 100.0%;">         <b>Price:</b> $490000.0<br>         <b>Bedrooms:</b> 3<br>         <b>Bathrooms:</b> 1.75<br>         <b>Sqft:</b> 1510 sqft<br>         <b>Condition:</b> 4<br>         <b>Grade:</b> 8<br>         <b>Year Built:</b> 1984<br>         </div>`)[0];
+                popup_414001ec3a7011dbe56ab7dc54e3600e.setContent(html_aad55ef9486cec563fcc975247aea7fd);
+            
+        
+
+        marker_9058c9c9c420a3b38968b968c20be912.bindPopup(popup_414001ec3a7011dbe56ab7dc54e3600e)
+        ;
+
+        
+    
+    
+            marker_9058c9c9c420a3b38968b968c20be912.bindTooltip(
+                `<div>
+                     Price: 490000.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_12a7a15e6ead7be3c84261d02440788f = L.marker(
+                [47.5966, -122.175],
+                {
+}
+            ).addTo(map_7d075cf32ff0ff472ba56683b2c0170e);
+        
+    
+        var popup_f745ed7464c089856acbbc0c4b376c12 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e857a726d62cf2f3562a6e954a61cbfb = $(`<div id="html_e857a726d62cf2f3562a6e954a61cbfb" style="width: 100.0%; height: 100.0%;">         <b>Price:</b> $500000.0<br>         <b>Bedrooms:</b> 3<br>         <b>Bathrooms:</b> 1.75<br>         <b>Sqft:</b> 1560 sqft<br>         <b>Condition:</b> 3<br>         <b>Grade:</b> 8<br>         <b>Year Built:</b> 1961<br>         </div>`)[0];
+                popup_f745ed7464c089856acbbc0c4b376c12.setContent(html_e857a726d62cf2f3562a6e954a61cbfb);
+            
+        
+
+        marker_12a7a15e6ead7be3c84261d02440788f.bindPopup(popup_f745ed7464c089856acbbc0c4b376c12)
+        ;
+
+        
+    
+    
+            marker_12a7a15e6ead7be3c84261d02440788f.bindTooltip(
+                `<div>
+                     Price: 500000.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_cc1d66cfcfb7d54219a30d111bd1d6e5 = L.marker(
+                [47.5849, -122.17],
+                {
+}
+            ).addTo(map_7d075cf32ff0ff472ba56683b2c0170e);
+        
+    
+        var popup_d06578ed80ba07e8c4622ae2915c1270 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2f80ec8961ff92747b05a0b8d3baf4da = $(`<div id="html_2f80ec8961ff92747b05a0b8d3baf4da" style="width: 100.0%; height: 100.0%;">         <b>Price:</b> $475000.0<br>         <b>Bedrooms:</b> 3<br>         <b>Bathrooms:</b> 1.5<br>         <b>Sqft:</b> 1240 sqft<br>         <b>Condition:</b> 3<br>         <b>Grade:</b> 7<br>         <b>Year Built:</b> 1959<br>         </div>`)[0];
+                popup_d06578ed80ba07e8c4622ae2915c1270.setContent(html_2f80ec8961ff92747b05a0b8d3baf4da);
+            
+        
+
+        marker_cc1d66cfcfb7d54219a30d111bd1d6e5.bindPopup(popup_d06578ed80ba07e8c4622ae2915c1270)
+        ;
+
+        
+    
+    
+            marker_cc1d66cfcfb7d54219a30d111bd1d6e5.bindTooltip(
+                `<div>
+                     Price: 475000.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_3e78dfd6e098852ef228d5e33ffb8e2c = L.marker(
+                [47.593, -122.165],
+                {
+}
+            ).addTo(map_7d075cf32ff0ff472ba56683b2c0170e);
+        
+    
+        var popup_2b09985df7a60906fccfb2ab4598c759 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_41bb62b9d3c21f41f3697f8fdb291936 = $(`<div id="html_41bb62b9d3c21f41f3697f8fdb291936" style="width: 100.0%; height: 100.0%;">         <b>Price:</b> $400000.0<br>         <b>Bedrooms:</b> 3<br>         <b>Bathrooms:</b> 1.0<br>         <b>Sqft:</b> 1300 sqft<br>         <b>Condition:</b> 4<br>         <b>Grade:</b> 7<br>         <b>Year Built:</b> 1943<br>         </div>`)[0];
+                popup_2b09985df7a60906fccfb2ab4598c759.setContent(html_41bb62b9d3c21f41f3697f8fdb291936);
+            
+        
+
+        marker_3e78dfd6e098852ef228d5e33ffb8e2c.bindPopup(popup_2b09985df7a60906fccfb2ab4598c759)
+        ;
+
+        
+    
+    
+            marker_3e78dfd6e098852ef228d5e33ffb8e2c.bindTooltip(
+                `<div>
+                     Price: 400000.0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
